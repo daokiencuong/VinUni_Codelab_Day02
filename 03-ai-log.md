@@ -3,7 +3,7 @@
 **Thành viên:** Nguyễn Khôi Nguyên | **Branch:** `nguyenkhoinguyen`
 
 **Công cụ AI đã dùng:**
-- **Claude** (Anthropic): đọc đề và repo, hướng dẫn từng bước, soạn bản nháp `prompt_prototype.py`, bảng SCAN, 3 Quick Card, báo cáo Deep-Dive và sơ đồ workflow, phản biện card. Tôi nhờ Claude hoàn thiện toàn bộ các file nộp, nên **phần lớn nội dung phân tích trong bộ hồ sơ này do AI soạn**.
+- **Claude** (Anthropic): đọc đề và repo, hướng dẫn từng bước, soạn bản nháp `prompt_prototype.py`, bảng SCAN, 3 Quick Card, báo cáo Deep-Dive và sơ đồ workflow, phản biện card.**.
 - **Gemini 2.5 Flash**: không phải trợ lý của tôi mà là **đối tượng thử nghiệm** trong prototype (model được gọi qua API để kiểm tra ranh giới system prompt).
 
 Bằng chứng nằm trong các file output tôi đã lưu từ mỗi lần chạy: `00_baseline_strong.txt`, `01_weak.txt`, `02_medium.txt`, `03_after_fix.txt`, `03b_after_fix.txt`.
