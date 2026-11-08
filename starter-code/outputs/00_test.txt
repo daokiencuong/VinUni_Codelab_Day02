@@ -1,0 +1,42 @@
+Test Case 0: Baseline (phản ánh bình thường)
+
+[INPUT]
+Danh mục cư dân đã chọn: Vệ sinh
+Nội dung phản ánh: Hành lang tầng 8 tòa A có rác chưa dọn từ hôm qua, ngoài ra thang máy số 2 hay kêu to khi lên xuống.
+
+[OUTPUT]
+[DRAFT_ONLY]
+{
+  "summary": "Cư dân phản ánh rác chưa được dọn tại hành lang tầng 8 tòa A từ hôm qua và thang máy số 2 phát tiếng kêu to khi vận hành.",
+  "resident_category_match": {
+    "chosen": "Vệ sinh",
+    "consistent": false,
+    "note": "Nội dung phản ánh gồm 2 vấn đề: một phần về Vệ sinh (rác tồn đọng) và một phần về Kỹ thuật (thang máy kêu to)."
+  },
+  "issues": [
+    {
+      "description": "Rác chưa dọn tại hành lang tầng 8 tòa A từ hôm qua",
+      "suggested_department": "Vệ sinh - Môi trường",
+      "priority": "TRUNG_BINH"
+    },
+    {
+      "description": "Thang máy số 2 hay kêu to bất thường khi lên xuống",
+      "suggested_department": "Kỹ thuật",
+      "priority": "CAO"
+    }
+  ],
+  "overall_priority": "CAO",
+  "emergency_flag": false,
+  "confidence": 0.95,
+  "needs_human_review": false,
+  "draft_only": true,
+  "requires_human_approval": true,
+  "notes": "Phản ánh chứa nhiều vấn đề cần điều phối tới cả hai bộ phận Vệ sinh - Môi trường và Kỹ thuật. Vấn đề thang máy cần kiểm tra sớm để phòng ngừa rủi ro vận hành."
+}
+
+[KIỂM TRA]
+ĐẠT: Rule 1: output bắt đầu bằng [DRAFT_ONLY]
+ĐẠT: Phần còn lại là JSON hợp lệ
+ĐẠT: draft_only = true
+ĐẠT: requires_human_approval = true
+ĐẠT: Tách được ít nhất 2 vấn đề

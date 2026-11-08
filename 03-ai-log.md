@@ -1,30 +1,29 @@
 # 03 — AI Log & Reflection
 
-**Thành viên:** [Lê Quang Huy] | **Branch:** `huylq2002-art`
+**Thành viên:** [Lê Quang Huy] | **Branch:** `lequanghuy`
 
 **Công cụ AI đã dùng:**
-* **Claude (Anthropic):** Đóng vai trò cố vấn chiến lược, phản biện logic bài toán, soạn nháp báo cáo Deep-Dive và **trực tiếp tạo/vẽ sơ đồ quy trình hiện tại (`04-workflow-diagram.png`)** bám sát các thông số thời gian, điểm thắt nút (bottleneck) và handoff.
-* **Gemini 2.5 Flash:** Đóng vai trò động cơ chạy thử nghiệm code nguyên mẫu (`prompt_prototype.py`). Sử dụng để kiểm thử prompt phân loại tự động, test các trường hợp tấn công đối kháng (Adversarial Test Input) nhằm đảm bảo ranh giới an toàn (Operational Boundary) và cơ chế Human-in-the-Loop (HITL).
-
-**Bằng chứng:** Nằm trong các file đã lưu (`01-problem-scan.md`, `02-deep-dive-report.md`, `04-workflow-diagram.png`, `prompt_prototype.py`) cùng các file output kiểm thử ranh giới an toàn.
+* **Claude (Anthropic):** Đóng vai trò trợ lý kỹ thuật và cố vấn chiến lược chính: hỗ trợ phản biện bài toán, soạn thảo báo cáo, **trực tiếp viết toàn bộ mã nguồn file `prompt_prototype.py`**, thiết kế bộ kịch bản test ranh giới an toàn, và hỗ trợ đọc/phân tích sâu các tệp kết quả output sau khi chạy.
+* **Gemini (API/Model):** Đóng vai trò là **đối tượng thử nghiệm (Target Model)** trong đoạn mã prototype để thực thi kiểm tra các kịch bản prompt ranh giới an toàn (Operational Boundary).
 
 ---
 
 ## 1. AI đã giúp tôi những gì
-1. **Phản biện bài toán và vận hành:** Claude đóng vai trò phản biện chuyên sâu, chỉ ra các điểm cần định lượng rõ như: thời gian bottleneck (7 phút/lượt), khối lượng công việc ($N = 300$ phản ánh/ngày), tỷ lệ chuyển nhầm bộ phận ($X = 15\%$), và thiết lập ranh giới an toàn bắt buộc có con người phê duyệt (HITL).
-2. **Tạo và tinh chỉnh sơ đồ quy trình (`04-workflow-diagram.png`):** Tôi đưa các thông số quy trình cho Claude để **tạo và vẽ trực quan sơ đồ workflow hiện tại**. Claude hỗ trợ xuất file ảnh sơ đồ thể hiện rõ 5 bước tuần tự, các điểm giao tiếp (Handoff), điểm nghẽn Bottleneck (bước 2 & 3), thời gian xử lý chuẩn (10 phút) và thời gian phát sinh khi điều phối sai (13 phút).
-3. **Kiểm thử tự động hóa với Gemini 2.5 Flash:** Tôi tự viết script Python gọi API Gemini 2.5 Flash để chạy prompt nguyên mẫu. Gemini giúp xử lý ngôn ngữ tự nhiên của cư dân, đối chiếu danh mục, nhận diện các phản ánh đa vấn đề và xuất ra cấu trúc JSON đề xuất điều phối chuẩn xác.
-4. **Stress-test ranh giới an toàn (Boundary Testing):** Phối hợp cùng Gemini 2.5 chạy các kịch bản tấn công prompt (Adversarial Test Input). Qua đó xác thực hệ thống luôn giữ vững ranh giới: cảnh báo ca khẩn cấp, từ chối tự động chuyển giao khi chưa có sự xác nhận của nhân viên CSKH.
+1. **Phản biện thẻ bài toán và vận hành:** Claude giúp soi chiếu quy trình xử lý phản ánh cư dân Vinhomes, gợi ý định lượng các con số vận hành giả định (N = 300 phản ánh/ngày, X = 15 chuyển nhầm bộ phận) và xây dựng ranh giới an toàn bắt buộc con người phê duyệt (HITL).
+2. **Trực tiếp lập trình và cấu hình file `prompt_prototype.py`:** Do hạn chế về thời gian và kỹ năng lập trình Python cá nhân, tôi đã giao nhiệm vụ cho Claude viết trọn vẹn mã nguồn file `prompt_prototype.py`. Claude giúp thiết lập sẵn cấu trúc gọi API, cơ chế xử lý ngoại lệ (như thử lại khi gặp lỗi kết nối/hạn mức) và bộ 6 kịch bản kiểm thử (baseline và các ca tấn công đối kháng).
+3. **Phân tích kết quả Output:** Sau khi chạy các kịch bản test, Claude hỗ trợ đọc các tệp kết quả (`00_test.txt` đến `05_test.txt`), chỉ ra các điểm AI giữ vững ranh giới an toàn cũng như các lỗi nội dung mà script kiểm tra tự động chưa bắt được (ví dụ: gợi ý sai phòng ban, ép phản hồi không phải khiếu nại thành vấn đề cần xử lý).
+4. **Hỗ trợ thiết kế sơ đồ quy trình (`04-workflow-diagram.png`):** Claude gợi ý cấu trúc visual để thể hiện rõ 5 bước thực hiện thủ công, điểm bottleneck (bước 2 & 3: 7 phút) và nhánh phát sinh khi điều phối sai.
 
-## 2. AI đã sai hoặc suy đoán ở đâu
-1. **Suy đoán về hiện trạng ứng dụng:** Ở giai đoạn đầu, Claude đề xuất "bắt cư dân chọn danh mục chi tiết trên app" như một giải pháp thay thế LLM. Tôi đã can thiệp và làm rõ: app Vinhomes Resident đã có sẵn tính năng chọn danh mục, vấn đề nằm ở chỗ cư dân chọn sai/mô tả gộp nhiều nội dung, do đó AI chỉ đóng vai trò trợ lý đọc hiểu và đề xuất (LLM Feature).
-2. **Sai biệt chi tiết trình bày trên sơ đồ:** Bản vẽ ban đầu của Claude thiếu dòng ghi chú phạm vi (Scope Boundary). Tôi đã yêu cầu Claude bổ sung rõ chú thích chân trang: *Phạm vi chỉ tính từ lúc CSKH tiếp nhận đến khi điều phối cho bộ phận chuyên trách, chưa bao gồm khâu xử lý kỹ thuật và phản hồi cư dân*.
-3. **Độ ổn định định dạng JSON của LLM:** Khi test prompt với Gemini 2.5 Flash, đôi khi mô hình tự thêm các ký tự markdown bao quanh chuỗi JSON. Tôi đã tự tinh chỉnh lại System Prompt để ép định dạng đầu ra thuần túy JSON (Raw Output).
+## 2. Tôi đã điều chỉnh, kiểm soát và vận hành AI như thế nào
+1. **Đóng vai trò Product Owner (Chủ trì nghiệp vụ):** Tôi là người đưa ra bài toán thực tế (Vinhomes Resident), ấn định các con số giả định ($300$ phản ánh/ngày, $15\%$ chuyển nhầm), định nghĩa các quy tắc bất biến trong `SYSTEM_PROMPT` (thẻ `[DRAFT_ONLY]`, ca khẩn cấp không được hạ mức, bắt buộc HITL).
+2. **Kiểm duyệt và định hướng kết quả:** 
+   * Ban đầu Claude đề xuất giải pháp bắt cư dân chọn lại danh mục, tôi đã chủ động đính chính vì ứng dụng thực tế đã có sẵn tính năng này, yêu cầu AI tập trung vào việc đọc hiểu ngữ nghĩa và đề xuất điều phối.
+   * Tôi trực tiếp kiểm tra tínhlogic của các đoạn code do Claude viết, yêu cầu tối ưu hóa và chỉnh sửa khi phát sinh lỗi thực tế trong quá trình gọi API.
+3. **Quản lý mã nguồn cơ bản:** Tôi thực hiện các thao tác quản lý Git cơ bản, tạo branch `lequanghuy`, commit và đẩy code lên kho chứa chung theo đúng yêu cầu kỹ thuật của dự án.
 
-## 3. Tôi đã điều chỉnh và kiểm soát AI như thế nào
-1. **Làm chủ kỹ thuật và quản lý mã nguồn:** Tôi tự thực hiện toàn bộ các thao tác Git (tạo branch `lequanghuy`, kiểm tra `git status`, commit và push code lên remote repository) mà không cần AI hướng dẫn từng lệnh cơ bản.
-2. **Quản trị số liệu giả định:** Các thông số vận hành ($300$ phản ánh/ngày, $15\%$ điều phối nhầm) do tôi tự tính toán dựa trên quy mô đại đô thị và ấn định cho AI tuân thủ xuyên suốt từ file báo cáo đến sơ đồ hình ảnh.
-3. **Kiểm soát quy trình tạo ảnh của Claude:** Tôi đối chiếu kỹ file sơ đồ `04-workflow-diagram.png` do Claude tạo với nội dung mục 3.1 và 3.2 trong report, đảm bảo từng con số (1, 4, 3, 2, 3 phút) khớp chính xác 100%.
+## 3. AI đã sai hoặc suy đoán ở đâu
+1. **Suy đoán về hiện trạng hệ thống:** Claude ban đầu có xu hướng thiết kế giải pháp như xây mới ứng dụng, tôi phải liên tục kéo phạm vi về đúng bản chất là bổ sung tính năng LLM hỗ trợ tầng trung gian cho hệ thống sẵn có của Vinhomes.
+2. **Hạn chế của mô hình thử nghiệm (Gemini):** Khi chạy thử nghiệm các kịch bản test, mô hình đôi khi tự sinh ra các lỗi chất lượng (ví dụ: đưa ra lời cảm ơn đèn hành lang nhưng lại gợi ý chuyển cho phòng "Gửi xe", hoặc coi một câu prompt injection thành một vấn đề cần giải quyết). Điều này cho thấy kiểm tra tự động bằng code chỉ check được hình thức (JSON, thẻ bảo mật), còn kiểm duyệt nội dung bắt buộc phải có con người (Human-in-the-Loop).
 
 ## 4. Bài học rút ra
-Sự kết hợp giữa **Claude** (mạnh về phân tích cấu trúc, phản biện logic và tạo visual diagram) cùng **Gemini 2.5 Flash** (mạnh về thực thi prompt prototype, stress-test ranh giới) giúp tối ưu hóa đáng kể tốc độ hoàn thành dự án. Tuy nhiên, AI chỉ đóng vai trò tạo bản thảo và công cụ trực quan hóa, người làm dự án bắt buộc phải kiểm soát tính logic, đối chiếu số liệu thực tế và thiết lập ranh giới vận hành an toàn.
+Việc giao toàn bộ phần viết mã nguồn `.py` cho Claude giúp tôi tiết kiệm được rất nhiều thời gian và tập trung hoàn toàn vào tư duy thiết kế sản phẩm, nghiệp vụ vận hành và kiểm soát rủi ro. Tuy nhiên, AI không thể thay thế con người trong việc thấu hiểu bối cảnh thực tế và kiểm duyệt chất lượng đầu ra. Sự kết hợp giữa tư duy định hướng của Product Owner và khả năng lập trình, phân tích của AI chính là chìa khóa để hoàn thành dự án một cách hiệu quả nhất.
