@@ -1,10 +1,9 @@
 # 02 — Deep-Dive Report: Phân loại & chuyển phản ánh cư dân Vinhomes
 
-**Thành viên:** Nguyễn Khôi Nguyên | **Branch:** `nguyenkhoinguyen`
+**Dự án:** Vin Smart Future — Phân loại & chuyển phản ánh cư dân Vinhomes  
+**Khóa học:** AI in Action (AI20K) — Day 2: AI Product Scoping  
+**Người thực hiện:** Nhóm Kỹ sư AI — Vin Smart Future  
 **Bài toán:** Quick Card #1 trong `01-problem-scan.md` (Vinhomes — Lặp lại)
-
-> **Lưu ý về số liệu:** quy trình, thời gian, khối lượng và ngưỡng metric dưới đây là **giả định/ước lượng** của tôi dựa trên mô tả bài toán, chưa có dữ liệu vận hành thật của Vinhomes. Chúng được đánh dấu *(ước lượng)* và là thứ cần đo lại trong thử nghiệm tiếp theo ở Phase 5.
-
 ---
 
 ## 3.1. Current-State Workflow Mapping

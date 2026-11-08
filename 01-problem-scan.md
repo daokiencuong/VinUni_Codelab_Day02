@@ -1,8 +1,8 @@
 # 01 — Problem Scan & Quick Cards
 
-**Thành viên:** Nguyễn Khôi Nguyên | **Branch:** `nguyenkhoinguyen`
-
-> **Lưu ý về số liệu:** mọi con số về thời gian, tần suất và ngưỡng metric trong file này là **ước lượng/giả định** của tôi dựa trên mô tả bài toán, chưa có dữ liệu vận hành thật của Vingroup. Metric là mục tiêu đề xuất; cần đo baseline thật trước khi cam kết.
+**Dự án:** Vin Smart Future (Hệ sinh thái Vingroup)  
+**Khóa học:** AI in Action (AI20K) — Day 2: AI Product Scoping  
+**Người thực hiện:** AI Product Engineer — Vin Smart Future Team
 
 ---
 
