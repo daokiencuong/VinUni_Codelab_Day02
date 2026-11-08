@@ -119,6 +119,8 @@ Chuyển ban quản lý đúng tòa --> theo dõi phản hồi
 
 > Pain có vẻ thật (phân loại thủ công lặp lại, ước lượng ~3 phút/phản ánh) và rủi ro khi AI sai nằm trong tầm kiểm soát nhờ HITL và Fallback, nhưng hiện **chưa đủ bằng chứng để build**: (1) chưa có dữ liệu mẫu đã gán nhãn, nên chưa thể đo bất kỳ metric nào; (2) chưa có baseline, nên không biết AI cần tốt hơn cái gì (một Rule dựa trên ô chọn loại và từ khóa có thể đã đạt ≥ 95%); (3) chưa biết nhân viên CSKH có chấp nhận quy trình mới hay không; (4) các con số thời gian và khối lượng đều là ước lượng. Đầu tư xây LLM lúc này vi phạm nguyên tắc "không có baseline thì không có lợi ích rõ ràng". Quyết định hợp lý là **không build ngay mà đo baseline trước**.
 
+> **Ghi chú về prototype:** file `starter-code/prompt_prototype.py` (nộp ở branch cá nhân) là một thí nghiệm stress-test ranh giới của prompt cho **chính bài toán này** (Vinhomes Complaint Triage Co-pilot): kiểm tra AI có giữ thẻ `[DRAFT_ONLY]`, không hạ mức khẩn ca an toàn, không bịa tòa nhà và không bị ghi đè chỉ thị hay không. Đây không phải quyết định build; quyết định của Deep-Dive vẫn là NOT YET.
+
 ### Next experiment nhỏ nhất (1-2 tuần)
 
 1. Xin 200-300 phản ánh đã ẩn danh; 2 nhân viên gán nhãn độc lập (loại, tòa, mức khẩn) để có "đáp án chuẩn" và đo mức đồng thuận giữa hai người.

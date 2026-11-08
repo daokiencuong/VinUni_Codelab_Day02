@@ -24,7 +24,7 @@ Tôi quét theo 4 lens (Lặp lại, Tốn thời gian, AI có thể tốt hơn,
 
 Tôi chọn top 3: **#2 (Vinhomes), #3 (VinFast), #4 (Vinmec).**
 
-**Lý do chọn:** ba bài toán cho ba mức kiến trúc và ba mức rủi ro khác nhau (LLM duyệt nhẹ, Rule, LLM duyệt bắt buộc), giúp tôi thực hành phân biệt "khi nào cần AI". Bài #1 tôi đã dùng làm prototype kỹ thuật (`prompt_prototype.py`). Bài #5 có giá trị nhưng cách tiếp cận gần giống #2 (đọc văn bản tự do rồi phân loại), nên không chọn.
+**Lý do chọn:** ba bài toán cho ba mức kiến trúc và ba mức rủi ro khác nhau (LLM duyệt nhẹ, Rule, LLM duyệt bắt buộc), giúp tôi thực hành phân biệt "khi nào cần AI". Bài #1 (Xanh SM) trùng với kịch bản mẫu của starter-code nên tôi không chọn làm Deep-Dive. Bài #5 có giá trị nhưng cách tiếp cận gần giống #2 (đọc văn bản tự do rồi phân loại), nên không chọn.
 
 ### Card #1 — Vinhomes: phân loại phản ánh cư dân
 
